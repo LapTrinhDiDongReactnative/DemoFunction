@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Variable Name Converter</title>
+  </head>
+  <body>
+    <textarea id="inputTextArea" rows="5" cols="50"></textarea><br />
+    <button onclick="convert()">Convert</button>
+    <div id="outputDiv"></div>
+
+    <script>
+      function convert() {
+        const inputTextArea = document.getElementById('inputTextArea')
+        const outputDiv = document.getElementById('outputDiv')
+
+        // Clear previous results
+        outputDiv.innerHTML = ''
+
+        // Split the input text by lines
+        const lines = inputTextArea.value.split('\n')
+
+        // Process each line
+        for (const line of lines) {
+          // Split the line by underscores
+          const words = line.split('_')
+
+          // Initialize the camelCase variable
+          let camelCase = words[0]
+
+          // Initialize the checkmark string
+          let checkmarks = '✅'
+
+          // Convert to camelCase
+          for (let i = 1; i < words.length; i++) {
+            camelCase += words[i][0].toUpperCase() + words[i].slice(1)
+            checkmarks += '✅'
+          }
+
+          // Display the converted variable and checkmarks
+          outputDiv.innerHTML += `${camelCase} ${checkmarks}<br>`
+        }
+      }
+    </script>
+  </body>
+</html>
